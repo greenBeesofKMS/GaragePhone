@@ -34,7 +34,7 @@ WAV_GREETING   = "greeting.wav"
 WAV_ASK_NAME   = "ask_name.wav"
 WAV_ASK_MONTH  = "ask_month.wav"
 
-# Device stories (individual WAVs, played in order or randomly)
+# Device stories (einzeln als WAVs, aber wir wählen nur 1)
 DEVICE_STORIES = [
     "device_radio.wav",
     "device_mixer.wav",
@@ -42,7 +42,12 @@ DEVICE_STORIES = [
     "device_erika.wav",
 ]
 
-# POIs (one per run). Each has a dedicated WAV.
+def step_device_random():
+    wav = random.choice(DEVICE_STORIES)
+    play_wav(wav)
+    return wav
+
+# POIs (nur 1 pro Lauf)
 POI_POOL = [
     ("Bagaklut Garage",                "poi_bagaklut_garage.wav"),
     ("Viadukt with Park & TableTennis","poi_viadukt_park_tt.wav"),
@@ -52,6 +57,11 @@ POI_POOL = [
     ("Hochgarage (exhibition)",        "poi_hochgarage_exhibition.wav"),
     ("Repair Café Sonnenberg",         "poi_repaircafe_sonnenberg.wav"),
 ]
+
+def step_poi_random():
+    name, wav = random.choice(POI_POOL)
+    play_wav(wav)
+    return name
 
 # ========= FRITZ!BOX CALL via pyVoIP =========
 from pyVoIP.VoIP import VoIPPhone, InvalidStateError, CallState
@@ -216,23 +226,21 @@ def run_workflow_once():
     # 5) Dialogue (abort gracefully if user hangs up mid-way)
     try:
         if not hook_lifted(): raise InterruptedError
-        step_greeting()
+        step_garage_intro()          # Intro zu den Geräten
 
         if not hook_lifted(): raise InterruptedError
-        step_ask_name()
+        chosen_device = step_device_random()
+        print(f"[oracle] Device this run: {chosen_device}")
 
         if not hook_lifted(): raise InterruptedError
-        step_ask_month()
+        step_poi_intro()             # Intro zu den Orten
 
         if not hook_lifted(): raise InterruptedError
-        step_devices_story(play_all=True)  # set to False for "one device per run"
+        chosen_poi = step_poi_random()
+        print(f"[oracle] POI this run: {chosen_poi}")
 
         if not hook_lifted(): raise InterruptedError
-        poi = step_poi_once()
-        print(f"[oracle] POI this run: {poi}")
-
-        if not hook_lifted(): raise InterruptedError
-        step_bye()   # << hier Bye-Ansage abspielen
+        step_bye()
 
     except InterruptedError:
         pass
