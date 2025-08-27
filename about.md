@@ -132,7 +132,7 @@ pip3 install pygame vosk
 
 ##Configuration (English Defaults)
 
-audio/
+## audio req
   greeting.wav
   ask_name.wav
   ask_month.wav
@@ -147,7 +147,6 @@ audio/
   device_mixer.wav
   device_table.wav
   device_erika.wav
-
 
 Months list (English): ["january", "february", "march", "april", "may", "june",
  "july", "august", "september", "october", "november", "december"]
