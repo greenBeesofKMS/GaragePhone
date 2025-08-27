@@ -57,7 +57,7 @@ def calling(call):
         call.hangup()
 
 if __name__ == "__main__":
-    phone = VoIPPhone("192.168.188.1", 5060, "raspiphone" , "3000garagen", myIP="192.168.188.21", callCallback=answer)
+    phone = VoIPPhone("192.168.188.1", 5060, "raspiphone" , "...., myIP="...", callCallback=answer)
     phone.start()
 #    input('Press enter to disable the phone')
     #time.sleep(5)
