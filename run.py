@@ -256,7 +256,7 @@ def run_workflow_once():
 def main():
     setup_gpio()
     init_phone()
-    print("HacklabGarage 2025 – WAV-only oracle ready (pyVoIP).")
+    print("Welcome.")
     try:
         while True:
             if within_cooldown():
