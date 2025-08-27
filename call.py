@@ -9,14 +9,17 @@ def answer(call):
         frames = f.getnframes()
         data = f.readframes(frames)
         f.close()
+        
+        print(f)
 
         call.answer()
         call.write_audio(data)  # This writes the audio data to the transmit buffer, this must be bytes.
-
         stop = time.time() + (frames / 8000)  # frames/8000 is the length of the audio in seconds. 8000 is the hertz of PCMU.
 
         while time.time() <= stop and call.state == CallState.ANSWERED:
             time.sleep(0.1)
+        
+        
         call.hangup()
     except InvalidStateError:
         pass
@@ -30,8 +33,9 @@ def calling(call):
           print(call.state)
           time.sleep(0.5)
         time.sleep(2)
-        f = wave.open('output.wav', 'rb')
+        f = wave.open('../Desktop/Garage2/output.wav', 'rb')
         data = f.readframes(160)
+        print(data)
         while data:
             call.write_audio(data)
             data = f.readframes(160)
@@ -51,13 +55,15 @@ def calling(call):
                 call.hangup()
             time.sleep(0.1)
         print("end of call")
-    except InvalidStateError:
+    except InvalidStateError as e:
+        print(e)
         pass
-    except:
+    except Exception as e:
+        print(e)
         call.hangup()
 
 if __name__ == "__main__":
-    phone = VoIPPhone("192.168.188.1", 5060, "raspiphone" , "...., myIP="...", callCallback=answer)
+    phone = VoIPPhone("192.168.188.1", 5060, "raspiphone" , "...", myIP="...", callCallback=answer)
     phone.start()
 #    input('Press enter to disable the phone')
     #time.sleep(5)
