@@ -133,20 +133,20 @@ pip3 install pygame vosk
 ##Configuration (English Defaults)
 
 ## audio req
-  greeting.wav
-  ask_name.wav
-  ask_month.wav
-  poi_bagaklut_garage.wav
-  poi_viadukt_park_tt.wav
-  poi_fablab_chemnitz.wav
-  poi_chaostreff_chemnitz.wav
-  poi_zietenaugust_garden.wav
-  poi_hochgarage_exhibition.wav
-  poi_repaircafe_sonnenberg.wav
-  device_radio.wav
-  device_mixer.wav
-  device_table.wav
-  device_erika.wav
+  - greeting.wav
+  - ask_name.wav
+  - ask_month.wav
+  - poi_bagaklut_garage.wav
+  - poi_viadukt_park_tt.wav
+  - poi_fablab_chemnitz.wav
+  - poi_chaostreff_chemnitz.wav
+  - poi_zietenaugust_garden.wav
+  - poi_hochgarage_exhibition.wav
+  - poi_repaircafe_sonnenberg.wav
+  - device_radio.wav
+  - device_mixer.wav
+  - device_table.wav
+  - device_erika.wav
 
 Months list (English): ["january", "february", "march", "april", "may", "june",
  "july", "august", "september", "october", "november", "december"]
