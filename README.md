@@ -1,14 +1,27 @@
-# GaragePhone
-**HacklabGarage 2025 Project**
+## GaragePhone
+
+# HacklabGarage 2025 Project
 
 A Raspberry Pi turns a vintage telephone into a playful oracle.  
-A nearby sensor triggers a pseudo-random ring; when the handset is lifted, a short, guided dialog runs:
+A nearby **PIR sensor (GPIO 17)** triggers a pseudo-random ring via Fritz!Box;  
+when the handset is lifted (**hook switch GPIO 23**), a short, guided dialog runs.  
+Spotlights (**GPIO 27**) switch on during ringing/interaction, and off afterwards.
 
-.... 
-- *“For Alex, born in July: in Chemnitz, check out …”*  
+The oracle flow:
 
-The system works **offline** (no LLM required).  
-Optional offline speech-to-text (STT) lets you actually parse the name and birth month.
+1. **Greeting** – “Hello.”
+2. **Ask Name** – Fake-interactive (wait) or optional STT (~7s).  
+3. **Ask Birth Month** – Fake-interactive (wait) or optional STT (~10s).  
+4. **Story Telling** – playful templates, e.g.:  
+   *“For Alex, born in July: in Chemnitz, check out …”*  
+   Lost gadgets of the Garage, or POIs from the city map.  
+5. **Good Advice** – *“It brings you luck to go to …”*  
+6. **Cooldown** – prevent repeated ringing (e.g., 90s).
+
+The system works fully offline (no LLM required).  
+Optional offline speech-to-text (STT, Vosk) lets you actually parse  
+the spoken **name** and **birth month**.
+
 
 ---
 
