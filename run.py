@@ -59,8 +59,8 @@ from pyVoIP.VoIP import VoIPPhone, InvalidStateError, CallState
 FRITZBOX_IP   = "192.168.188.1"   # Fritz!Box IP
 FRITZBOX_PORT = 5060
 SIP_USER      = "raspiphone"      # Fritz!Box SIP username (Telefoniegerät)
-SIP_PASS      = "3000garagen"     # SIP password
-LOCAL_IP      = "192.168.188.21"  # IP of the Raspberry Pi (for RTP)
+SIP_PASS      = "..."     # SIP password
+LOCAL_IP      = "..."  # IP of the Raspberry Pi (for RTP)
 DIAL_TARGET   = "**1"             # internal target that drives your bells
 
 _PHONE = None
@@ -155,7 +155,7 @@ def step_ask_month():
     play_wav(WAV_ASK_MONTH)
     time.sleep(FAKE_WAIT_MONTH_S)  # Fake-interactive pause
 
-def step_devices_story(play_all=True):
+def step_devices_story(play_all=False):
     """
     If play_all=True: play all device story WAVs in order.
     If play_all=False: play exactly one random device WAV.
@@ -230,6 +230,9 @@ def run_workflow_once():
         if not hook_lifted(): raise InterruptedError
         poi = step_poi_once()
         print(f"[oracle] POI this run: {poi}")
+
+        if not hook_lifted(): raise InterruptedError
+        step_bye()   # << hier Bye-Ansage abspielen
 
     except InterruptedError:
         pass
