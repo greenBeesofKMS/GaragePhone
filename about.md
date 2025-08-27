@@ -132,14 +132,23 @@ pip3 install pygame vosk
 
 ##Configuration (English Defaults)
 
-Audio prompts: record or generate via TTS in English.
+audio/
+  greeting.wav
+  ask_name.wav
+  ask_month.wav
+  poi_bagaklut_garage.wav
+  poi_viadukt_park_tt.wav
+  poi_fablab_chemnitz.wav
+  poi_chaostreff_chemnitz.wav
+  poi_zietenaugust_garden.wav
+  poi_hochgarage_exhibition.wav
+  poi_repaircafe_sonnenberg.wav
+  device_radio.wav
+  device_mixer.wav
+  device_table.wav
+  device_erika.wav
 
-TTS language: use pico2wave -l en-GB (or en-US) in the say() helper.
-
-STT model path: ~/models/vosk-model-small-en-us-0.15
 
 Months list (English): ["january", "february", "march", "april", "may", "june",
  "july", "august", "september", "october", "november", "december"]
 
-
-Cities/locations: seed with your local flavor (e.g., Chemnitz, Ahorngarage, …).
